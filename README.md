@@ -9,6 +9,7 @@ This repository provides the official implementation of [**Multi-Head Low-Rank A
 - [Hardware Requirements](#hardware-requirements)
 - [Installation](#installation)
 - [Dataset](#dataset)
+- [Pretrained Weights](#pretrained-weights)
 - [Pretraining](#pretraining)
 - [Resume Training](#resume-training)
 - [Evaluation](#evaluation)
@@ -114,6 +115,18 @@ Evaluation data includes: Wikipedia, C4, Pile, RefinedWeb, Cosmopedia, FineWeb, 
 
 ---
 
+## Pretrained Weights
+
+We provide pretrained weights for all model variants on Hugging Face at [Soughing/MLRA](https://huggingface.co/Soughing/MLRA). To download the weights locally, run:
+
+```bash
+python3 output/down_model.py
+```
+
+The weights will be saved under the `output/` directory and can be used directly for evaluation without rerunning pretraining.
+
+---
+
 ## Pretraining
 
 We use `torchrun` for distributed pretraining across multiple GPUs. Config files for all model variants are provided under the `config/` directory.
@@ -150,7 +163,7 @@ Then launch training with the same `torchrun` command as before. The trainer wil
 
 ## Evaluation
 
-We provide two evaluation scripts: one for perplexity on held-out datasets, and one for zero-shot common-sense reasoning.
+We provide evaluation scripts for perplexity, zero-shot common-sense reasoning, and decoding speed.
 
 ### Perplexity Evaluation
 
@@ -170,6 +183,14 @@ Evaluates zero-shot performance on seven benchmarks: ARC-E, ARC-C, OpenBookQA, B
 python3 eval_downstream.py \
     --checkpoint_dir output/main/mlra_4 \
     --model mlra_4
+```
+
+### Decoding Speed Benchmark
+
+Measures decoding latency and throughput for GQA, MLA, GLA-2, and MLRA across different sequence lengths and tensor parallelism configurations.
+
+```bash
+python3 benchmark_decoding_speed.py
 ```
 
 ### Arguments

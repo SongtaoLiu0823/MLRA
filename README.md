@@ -1,4 +1,4 @@
-# Multi-Head Low-Rank Attention (MLRA)
+# Multi-Head Low-Rank Attention
 
 This repository provides the official implementation of [**Multi-Head Low-Rank Attention**](https://openreview.net/pdf?id=vBJKZ19XGY). MLRA is a novel attention mechanism that natively supports 4-way tensor parallelism and significantly reduces the key-value (KV) cache size, enabling efficient long-context inference at scale.
 

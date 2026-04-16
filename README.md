@@ -2,6 +2,8 @@
 
 This repository provides the official implementation of [**Multi-Head Low-Rank Attention**](https://openreview.net/pdf?id=vBJKZ19XGY). MLRA is a novel attention mechanism that natively supports 4-way tensor parallelism and significantly reduces the key-value (KV) cache size, enabling efficient long-context inference at scale.
 
+📝 [**Paper**](https://openreview.net/pdf?id=vBJKZ19XGY) | 📖 [**Blog**](https://songtaoliu0823.github.io/mlra/)
+
 ---
 
 ## Table of Contents
@@ -55,7 +57,9 @@ pip3 install transformers==4.51.3 datasets==3.5.1 tiktoken==0.9.0 wandb==0.19.10
 FlashAttention-3 is required for efficient attention computation on Hopper GPUs.
 
 ```bash
-cd flash-attention/hopper
+cd flash-attention
+git clone https://github.com/NVIDIA/cutlass.git csrc/cutlass
+cd hopper
 MAX_JOBS=16 python3 setup.py install
 cd ../..
 ```
